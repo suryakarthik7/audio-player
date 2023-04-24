@@ -55,18 +55,13 @@ class AudioPlayer extends LitElement {
       this.Play = false;
       this.PlayButton = "av:play-arrow";
     }
-  }
-  }
-  
 
+  }
+  }
   render() {
     return html`
-      <div></div>
-
-
+      
     `;
   }
-
-
 
 customElements.define('audio-player', AudioPlayer);
