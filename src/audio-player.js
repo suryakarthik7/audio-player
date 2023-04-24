@@ -61,13 +61,12 @@ class AudioPlayer extends LitElement {
 
   render() {
     return html`
-      <main>
-        
-      </main>
+      <div></div>
 
 
     `;
   }
+
 
 
 customElements.define('audio-player', AudioPlayer);
