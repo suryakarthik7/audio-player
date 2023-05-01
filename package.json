@@ -17,6 +17,7 @@
     "start": "web-dev-server"
   },
   "dependencies": {
+    "@lrnwebcomponents/simple-icon": "^4.2.0",
     "lit": "^2.0.2"
   },
   "devDependencies": {
@@ -57,17 +58,6 @@
   "prettier": {
     "singleQuote": true,
     "arrowParens": "avoid"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "prettier --write"
-    ]
   },
   "customElements": "custom-elements.json"
 }

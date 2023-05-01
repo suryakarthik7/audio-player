@@ -24,16 +24,13 @@ class AudioPlayer extends LitElement {
       text-align: center;
       background-color: var(--audio-player-background-color);
     }
-
     main {
       flex-grow: 1;
     }
-
     .app-footer {
       font-size: calc(12px + 0.5vmin);
       align-items: center;
     }
-
     .app-footer a {
       margin-left: 5px;
     }
@@ -49,6 +46,7 @@ class AudioPlayer extends LitElement {
   progressBar(){
     var duration = this.shadowRoot.querySelector(".player").duration;
     var currentTime = this.shadowRoot.querySelector(".player").currentTime;
+    var percentage = (currentTime / duration)*100;
     
     if(this.shadowRoot.querySelector(".player").ended)
     {
@@ -56,10 +54,31 @@ class AudioPlayer extends LitElement {
       this.PlayButton = "av:play-arrow";
     }
 
+    this.shadowRoot.querySelector(".container").style.background = `linear-gradient(90deg, blue 0% ${Percentage}%, red ${Percentage}% 100%)`;
+    
   }
+
+  handlePlayPause(){
+    if(this.shadowRoot.querySelector('audio').paused)
+    {
+      this.shadowRoot.querySelector('.player').play();
+      this.Play = true;
+      this.PlayButton = "av:pause";
+    }
+    else
+    {
+      this.shadowRoot.querySelector('.player').pause();
+      this.Play = false;
+      this.PlayButton = "av:play-arrow";
+    }
   }
+}
   render() {
     return html`
+    <div class="container" @click="${this.handleClickEvent}"> 
+    <simple-icon class="icon" icon="${this.PlayButton}"></simple-icon>
+    <audio class="player" src="${this.AudioFile}" type="audio/mpeg" @timeupdate="${this.progressBar}"></audio>
+  </div>
       
     `;
   }
