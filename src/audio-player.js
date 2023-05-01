@@ -72,7 +72,7 @@ class AudioPlayer extends LitElement {
       this.PlayButton = "av:play-arrow";
     }
   }
-}
+
   render() {
     return html`
     <div class="container" @click="${this.handleClickEvent}"> 
@@ -82,5 +82,6 @@ class AudioPlayer extends LitElement {
       
     `;
   }
+}
 
 customElements.define('audio-player', AudioPlayer);
