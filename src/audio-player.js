@@ -6,12 +6,15 @@ class AudioPlayer extends LitElement {
   static properties = {
     header: { type: String, reflect: true },
     audioFile: { attribute: "audio-file", type: String },
-    playButton: { type: String},
-    isPlaying: { type: Boolean, reflect: true}
+    playButton: { type: String },
+    isPlaying: { type: Boolean, reflect: true }
   }
 
   static styles = css`
-     :host {
+    center{
+      align-items: center;
+    }
+    :host {
       min-height: 100vh;
       display: inline;
       flex-direction: column;
@@ -47,8 +50,10 @@ class AudioPlayer extends LitElement {
       font-size: 25px;
       font-family: "Courier New";
     }
-    .icon-spacing{
-      padding-right: 8px;
+    simple-icon {
+      display: inline-block;
+      --simple-icon-height: 24px;
+      --simple-icon-width: 24px;
     }
     
   `;
@@ -92,7 +97,7 @@ class AudioPlayer extends LitElement {
   render() {
     return html`
     <div class="container" @click="${this.handlePlayPause}"> 
-      <simple-icon class="icon-spacing" icon="${this.playButton}"></simple-icon>
+      <simple-icon class="icon" icon="${this.playButton}"></simple-icon>
       <p>${this.header}</p>
       <audio class="player" src="${this.audioFile}" type="audio/mpeg" @timeupdate="${this.progressBar}"></audio>
     </div>
