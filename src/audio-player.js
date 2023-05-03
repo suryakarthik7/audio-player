@@ -7,19 +7,22 @@ class AudioPlayer extends LitElement {
   static properties = {
     header: { type: String, reflect: true },
     audioFile: { attribute: "audio-file", type: String },
-    playerIcon: { type: String },
+    playButton: { type: String },
     isPlaying: { type: Boolean, reflect: true }
   }
 
   static styles = css`
+    center{
+      align-items: center;
+    }
     :host {
       min-height: 100vh;
-      display: flex;
+      display: inline;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       font-size: calc(10px + 2vmin);
-      color: #ffffff;
+      color: #da6868;
       max-width: 960px;
       margin: 0 auto;
       text-align: center;
@@ -40,12 +43,13 @@ class AudioPlayer extends LitElement {
       display: inline-flex;
       align-items: center;
       padding: 4px 4px 4px 0px;
-      background: red;
-      border-radius: 4px;
+      background: black;
+      border-radius: 15px;
       min-width: 50px;
-      min-height: 40px;
+      height: 40px;
       cursor: pointer;
-      font-size: 15px;
+      font-size: 25px;
+      font-family: "Courier New";
     }
     
   `;
@@ -68,7 +72,7 @@ class AudioPlayer extends LitElement {
       this.PlayButton = "av:play-arrow";
     }
 
-    this.shadowRoot.querySelector(".container").style.background = `linear-gradient(90deg, blue 0% ${percentage}%, red ${percentage}% 100%)`;
+    this.shadowRoot.querySelector(".container").style.background = `linear-gradient(to right, white 0% ${percentage}%, black ${percentage}% 100%)`;
 
   }
 
