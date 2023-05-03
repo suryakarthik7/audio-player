@@ -1,19 +1,22 @@
 import { LitElement, html, css } from 'lit';
 import "@lrnwebcomponents/simple-icon/simple-icon.js";
 import "@lrnwebcomponents/simple-icon/lib/simple-icons.js";
+import { SimpleColors } from '@lrnwebcomponents/simple-colors';
+import "@lrnwebcomponents/simple-icon/lib/simple-icon-button.js";
 
-class AudioPlayer extends LitElement {
-  static properties = {
+class AudioPlayer extends SimpleColors {
+  static get properties() {
+    return{
+    ...super.properties,
     header: { type: String, reflect: true },
     audioFile: { attribute: "audio-file", type: String },
     playButton: { type: String },
+    icon: {type: String, reflect: true},
     isPlaying: { type: Boolean, reflect: true }
   }
+}
 
-  static styles = css`
-    center{
-      align-items: center;
-    }
+  static styles = [...super.styles, css`
     :host {
       min-height: 100vh;
       display: inline;
@@ -25,38 +28,40 @@ class AudioPlayer extends LitElement {
       max-width: 960px;
       margin: 0 auto;
       text-align: center;
-      background-color: var(--audio-player-background-color);
+      
     }
-    main {
-      flex-grow: 1;
-    }
-    .app-footer {
-      font-size: calc(12px + 0.5vmin);
-      align-items: center;
-    }
-    .app-footer a {
-      margin-left: 5px;
-    }
-
+  
     .container {
       display: inline-flex;
       align-items: center;
-      padding: 4px 4px 4px 0px;
-      background: black;
-      border-radius: 15px;
+      
+      
+      //border-radius: 15px;
       min-width: 50px;
       height: 40px;
       cursor: pointer;
       font-size: 25px;
       font-family: "Courier New";
+
+      padding: var(--inline-audio-padding);
+      background: var(--simple-colors-default-theme-yellow-4);
+      border: var(--inline-audio-border);
+      margin: var(--inline-audio-margin);
     }
     simple-icon {
-      display: inline-block;
-      --simple-icon-height: 24px;
+      --simple-icon-color: red;
+      --simple-icon-button-focus-color: red;
+      --simple-icon-button-focus-opacity: 70%;
       --simple-icon-width: 24px;
+      --simple-icon-height: 24px;
+      padding: var(--inline-audio-icon-padding);
     }
+    simple-icon-button::part(button){
+      outline: none;
+    }
+
     
-  `;
+    `];
 
   constructor() {
     super();
@@ -76,7 +81,7 @@ class AudioPlayer extends LitElement {
       this.playButton = "av:play-arrow";
     }
 
-    this.shadowRoot.querySelector(".container").style.background = `linear-gradient(to right, white 0% ${percentage}%, black ${percentage}% 100%)`;
+    this.shadowRoot.querySelector(".container").style.background = `linear-gradient(to right, var(--simple-colors-default-theme-accent-4) 0% ${percentage}%, var(--simple-colors-default-theme-grey-4) ${percentage}% 100%)`;
     
   }
 
