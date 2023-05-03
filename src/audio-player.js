@@ -77,7 +77,7 @@ class AudioPlayer extends LitElement {
     }
 
     this.shadowRoot.querySelector(".container").style.background = `linear-gradient(to right, white 0% ${percentage}%, black ${percentage}% 100%)`;
-
+    
   }
 
   handlePlayPause() {
