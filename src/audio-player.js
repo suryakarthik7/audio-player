@@ -1,4 +1,3 @@
-
 import { LitElement, html, css } from 'lit';
 import "@lrnwebcomponents/simple-icon/simple-icon.js";
 import "@lrnwebcomponents/simple-icon/lib/simple-icons.js";
@@ -58,7 +57,7 @@ class AudioPlayer extends LitElement {
     super();
     this.header = 'My app';
     this.audioFile = new URL('../assets/Rick Roll Sound Effect.mp3', import.meta.url).href;
-    this.PlayButton = "av:play-arrow";
+    this.playButton = "av:play-arrow";
     this.isPlaying = false;
   }
 
@@ -69,7 +68,7 @@ class AudioPlayer extends LitElement {
 
     if (this.shadowRoot.querySelector(".player").ended) {
       this.Play = false;
-      this.PlayButton = "av:play-arrow";
+      this.playButton = "av:play-arrow";
     }
 
     this.shadowRoot.querySelector(".container").style.background = `linear-gradient(to right, white 0% ${percentage}%, black ${percentage}% 100%)`;
@@ -80,19 +79,20 @@ class AudioPlayer extends LitElement {
     if (this.shadowRoot.querySelector('audio').paused) {
       this.shadowRoot.querySelector('.player').play();
       this.Play = true;
-      this.PlayButton = "av:pause";
+      this.playButton = "av:pause";
+      console.log(this.play);
     }
     else {
       this.shadowRoot.querySelector('.player').pause();
       this.Play = false;
-      this.PlayButton = "av:play-arrow";
+      this.playButton = "av:play-arrow";
     }
   }
 
   render() {
     return html`
     <div class="container" @click="${this.handlePlayPause}"> 
-      <simple-icon class="icon" icon="${this.PlayButton}"></simple-icon>
+      <simple-icon class="icon" icon="${this.playButton}"></simple-icon>
       <p>${this.header}</p>
       <audio class="player" src="${this.audioFile}" type="audio/mpeg" @timeupdate="${this.progressBar}"></audio>
     </div>
